@@ -20,7 +20,7 @@
 		0DDDED262CACF42A0033FAEA /* Exceptions for "Festimate-iOS" folder in "Festimate-iOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Global/Settings/Info.plist,
 			);
 			target = 0DDDED132CACF4290033FAEA /* Festimate-iOS */;
 		};
