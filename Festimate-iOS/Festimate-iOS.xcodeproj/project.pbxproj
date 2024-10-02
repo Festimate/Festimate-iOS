@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0DDDED432CAD01680033FAEA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0DDDED422CAD01680033FAEA /* SnapKit */; };
+		0DDDED462CAD01700033FAEA /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 0DDDED452CAD01700033FAEA /* Then */; };
+		0DDDED492CAD028B0033FAEA /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 0DDDED482CAD028B0033FAEA /* Moya */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		0DDDED142CACF4290033FAEA /* Festimate-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Festimate-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DDDED432CAD01680033FAEA /* SnapKit in Frameworks */,
+				0DDDED462CAD01700033FAEA /* Then in Frameworks */,
+				0DDDED492CAD028B0033FAEA /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,9 @@
 			);
 			name = "Festimate-iOS";
 			packageProductDependencies = (
+				0DDDED422CAD01680033FAEA /* SnapKit */,
+				0DDDED452CAD01700033FAEA /* Then */,
+				0DDDED482CAD028B0033FAEA /* Moya */,
 			);
 			productName = "Festimate-iOS";
 			productReference = 0DDDED142CACF4290033FAEA /* Festimate-iOS.app */;
@@ -107,6 +119,11 @@
 			);
 			mainGroup = 0DDDED0B2CACF4290033FAEA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0DDDED412CAD01680033FAEA /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0DDDED442CAD01700033FAEA /* XCRemoteSwiftPackageReference "Then" */,
+				0DDDED472CAD028B0033FAEA /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0DDDED152CACF4290033FAEA /* Products */;
 			projectDirPath = "";
@@ -333,6 +350,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0DDDED412CAD01680033FAEA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		0DDDED442CAD01700033FAEA /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		0DDDED472CAD028B0033FAEA /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0DDDED422CAD01680033FAEA /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DDDED412CAD01680033FAEA /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		0DDDED452CAD01700033FAEA /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DDDED442CAD01700033FAEA /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		0DDDED482CAD028B0033FAEA /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DDDED472CAD028B0033FAEA /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0DDDED0C2CACF4290033FAEA /* Project object */;
 }
