@@ -12,6 +12,8 @@ import SnapKit
 
 final class LoginViewController: UIViewController {
     
+    private let label = UILabel()
+    
     // MARK: - UI Properties
     
     override func viewDidLoad() {
@@ -31,7 +33,7 @@ final class LoginViewController: UIViewController {
     }
     
     func setStyle() {
-        
+        self.view.backgroundColor = .mainCoral
     }
 }
 
