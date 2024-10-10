@@ -250,9 +250,15 @@ final class matchingCardCollectionViewCell: UICollectionViewCell {
 extension matchingCardCollectionViewCell {
     
     func dataBind(_ matchingData: MainModel, itemRow: Int) {
-        schoolInfoLabel.text = matchingData.school
+        locationInfoLabel.text = matchingData.location
         timeInfoLabel.text = matchingData.time
         nickNameLabel.text = matchingData.nickname
+        schoolInfoLabel.text = matchingData.school
+        ageTagLabel.text = "#\(matchingData.age)세"
+        mbtiTagLabel.text = "#\(matchingData.mbti)"
+        faceTagLabel1.text = "#\(matchingData.faceInfo1)"
+        faceTagLabel2.text = "#\(matchingData.faceInfo2)"
+        dressInfoTagLabel.text = matchingData.dressInfo
     }
 }
 
