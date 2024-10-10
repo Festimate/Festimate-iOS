@@ -85,7 +85,7 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: matchingCardCollectionViewCell.cellIdentifier, for: indexPath) as? matchingCardCollectionViewCell else { return UICollectionViewCell() }
-        
+        cell.blurCardView.isHidden = matchingData[indexPath.item].matchingState
         cell.dataBind(matchingData[indexPath.item], itemRow: indexPath.item)        
         return cell
     }
