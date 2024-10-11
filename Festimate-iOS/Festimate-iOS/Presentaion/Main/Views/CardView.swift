@@ -52,10 +52,10 @@ class CardView: UIView {
     
     
     func setStyle() {
-        matchingCardCollectionView.backgroundColor = .gray01
-        matchingCardCollectionView.showsHorizontalScrollIndicator = false
-        
-        emptyView.isHidden = true
+        matchingCardCollectionView.do {
+            $0.backgroundColor = .gray01
+            $0.showsHorizontalScrollIndicator = false
+        }
     }
     
 }
