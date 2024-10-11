@@ -16,11 +16,14 @@ final class MainViewController: UIViewController {
     
     private let mainView = MainView()
     
+    // MARK: - Properties
+    
     private var matchingData: [MainModel] = MainModel.dummy() {
         didSet {
             self.mainView.cardView.matchingCardCollectionView.reloadData()
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +31,6 @@ final class MainViewController: UIViewController {
         setDelegate()
         setHierarchy()
         setLayout()
-        setStyle()
     }
     
     func setHierarchy() {
@@ -49,9 +51,15 @@ final class MainViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
+}
+
+extension MainViewController {
     
-    func setStyle() {
+    func isCellEmpty(cellCount: Int) {
+        let isEmpty = cellCount == 0
         
+        self.mainView.cardView.matchingCardCollectionView.isHidden = isEmpty
+        self.mainView.cardView.emptyView.isHidden = !isEmpty
     }
 }
 
@@ -80,6 +88,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        isCellEmpty(cellCount: matchingData.count)
+        
         return matchingData.count
     }
     

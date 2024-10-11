@@ -17,10 +17,12 @@ class CardView: UIView {
     let matchingCardCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        layout.scrollDirection = .horizontal  
-
+        layout.scrollDirection = .horizontal
+        
         return collectionView
     }()
+    
+    let emptyView: EmptyView = EmptyView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,11 +37,15 @@ class CardView: UIView {
     }
     
     func setHierarchy() {
-        addSubview(matchingCardCollectionView)
+        addSubviews(matchingCardCollectionView, emptyView)
     }
     
     func setLayout() {
         matchingCardCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        emptyView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
@@ -48,6 +54,8 @@ class CardView: UIView {
     func setStyle() {
         matchingCardCollectionView.backgroundColor = .gray01
         matchingCardCollectionView.showsHorizontalScrollIndicator = false
+        
+        emptyView.isHidden = true
     }
     
 }
