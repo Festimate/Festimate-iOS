@@ -54,10 +54,10 @@ class EmptyView: UIView {
           }
      }
      
-     
      func setStyle() {
-          emptyLabel.setLabel(textColor: .gray04, font: .pretendard(.body_semi_15))
+          emptyLabel.do {
+               $0.setLabel(text: "아직 등록된 매칭이 없어요\n매칭을 추가해보세요!",textColor: .gray04, font: .pretendard(.body_semi_15))
+          }
      }
-     
 }
 
