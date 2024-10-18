@@ -14,7 +14,7 @@ final class MainViewController: UIViewController {
     
     // MARK: - UI Properties
     
-    private let mainView = MainView()
+    private let mainView: MainView = MainView()
     
     // MARK: - Properties
     
