@@ -18,22 +18,42 @@ final class AddMatchingViewController: UIViewController {
     
     // MARK: - Properties
     
- 
+    private var matchingInputData: AddMatchingModel = AddMatchingModel.sampleData() {
+        didSet {
+            updateButtonState()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setHierarchy()
         setLayout()
+        updateButtonState()
     }
     
     func setHierarchy() {
         self.view.addSubview(addMatchingView)
     }
-
+    
     
     func setLayout() {
         addMatchingView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
+}
+
+private extension AddMatchingViewController {
+    
+    func updateButtonState() {
+        let isEnabled = matchingInputData.isIdealTypeInput && matchingInputData.isPreferenceInput
+        setMatchingButtonEnabled(isEnabled)
+    }
+    
+    func setMatchingButtonEnabled(_ isEnabled: Bool) {
+        addMatchingView.matchingButton.backgroundColor = isEnabled ? .mainCoral : .gray03
+        addMatchingView.matchingButton.isEnabled = isEnabled
+    }
+    
 }

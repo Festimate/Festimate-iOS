@@ -38,7 +38,7 @@ class AddMatchingView: UIView {
     
     private let matcingInfoLabel: UILabel = UILabel()
     
-    private let matchingButton: UIButton = UIButton()
+    let matchingButton: UIButton = UIButton()
     
     // MARK: - Properties
     
@@ -159,7 +159,7 @@ class AddMatchingView: UIView {
         }
         
         matchingButton.do {
-            $0.setButton(title: "매칭하러 가기")
+            $0.setButton(title: "매칭하러 가기", backgroundColor: .gray03)
         }
         
         
