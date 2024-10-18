@@ -14,7 +14,7 @@ final class AddMatchingViewController: UIViewController {
     
     // MARK: - UI Properties
     
-    private let addMatchingView: AddMatchingView = AddMatchingView()
+    let addMatchingView: AddMatchingView = AddMatchingView()
     
     // MARK: - Properties
     
@@ -29,7 +29,9 @@ final class AddMatchingViewController: UIViewController {
         
         setHierarchy()
         setLayout()
+        setStyle()
         updateButtonState()
+        setActions()
     }
     
     func setHierarchy() {
@@ -42,9 +44,22 @@ final class AddMatchingViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
+    
+    func setStyle() {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    func setActions() {
+        addMatchingView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+    }
 }
 
 private extension AddMatchingViewController {
+    
+    @objc
+    func backButtonDidTap() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     func updateButtonState() {
         let isEnabled = matchingInputData.isIdealTypeInput && matchingInputData.isPreferenceInput

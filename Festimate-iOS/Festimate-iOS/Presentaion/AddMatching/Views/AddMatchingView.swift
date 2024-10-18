@@ -14,7 +14,7 @@ class AddMatchingView: UIView {
     
     // MARK: - UI Properties
 
-    private let backButton: UIImageView = UIImageView(image: .backIcon)
+    let backButton: UIButton = UIButton()
     
     private let titleLabel: UILabel = UILabel()
     
@@ -130,6 +130,10 @@ class AddMatchingView: UIView {
     
     func setStyle() {
         self.backgroundColor = .white
+        
+        backButton.do {
+            $0.setImage(.backIcon, for: .normal)
+        }
         
         titleLabel.do {
             $0.setLabel(text:"두근두근\n나의 FestiMate를 찾아봐요", textColor: .gray06, font: .pretendard(.title_bold_20))
