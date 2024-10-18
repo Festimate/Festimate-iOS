@@ -32,7 +32,7 @@ class MainView: UIView {
     
     private let infoStackView: UIStackView = UIStackView()
     
-    private let addMatchingButton: UIButton = UIButton()
+    let addMatchingButton: UIButton = UIButton()
     
     // MARK: - Properties
     
