@@ -239,7 +239,7 @@ final class matchingCardCollectionViewCell: UICollectionViewCell {
         }
         
         dressInfoTagLabel.do {
-            $0.setLabel(text: "폴로 셔츠에 가디건을 입고 있어요!", textColor: .gray06, font: .pretendard(.body_semi_13))
+            $0.setLabel(text: "폴로 셔츠에 가디건을 입고 있어요!", textColor: .gray06, font: .pretendard(.body_med_13))
         }
         blurCardView.isHidden = true
     }
