@@ -31,6 +31,7 @@ final class MainViewController: UIViewController {
         setDelegate()
         setHierarchy()
         setLayout()
+        setActions()
     }
     
     func setHierarchy() {
@@ -51,6 +52,10 @@ final class MainViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
+    
+    func setActions() {
+        mainView.addMatchingButton.addTarget(self, action: #selector(addMatchingButtonDidTap), for: .touchUpInside)
+    }
 }
 
 extension MainViewController {
@@ -60,6 +65,12 @@ extension MainViewController {
         
         self.mainView.cardView.matchingCardCollectionView.isHidden = isEmpty
         self.mainView.cardView.emptyView.isHidden = !isEmpty
+    }
+    
+    @objc
+    func addMatchingButtonDidTap() {
+        let addMatchingViewController = AddMatchingViewController()
+        self.navigationController?.pushViewController(addMatchingViewController, animated: true)
     }
 }
 
@@ -96,7 +107,7 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: matchingCardCollectionViewCell.cellIdentifier, for: indexPath) as? matchingCardCollectionViewCell else { return UICollectionViewCell() }
         cell.blurCardView.isHidden = matchingData[indexPath.item].matchingState
-        cell.dataBind(matchingData[indexPath.item], itemRow: indexPath.item)        
+        cell.dataBind(matchingData[indexPath.item], itemRow: indexPath.item)
         return cell
     }
 }
