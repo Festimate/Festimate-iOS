@@ -37,26 +37,16 @@ class AddMatchingButton: UIView {
     func setHierarchy() {
         textStackView.addArrangedSubviews(titleLabel, subTitleLabel)
         
-        self.addSubviews(backgroundView, textStackView)
+        self.addSubview(textStackView)
     }
     
     func setLayout() {
-        backgroundView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
         textStackView.snp.makeConstraints {
-            $0.center.equalTo(backgroundView)
+            $0.center.equalToSuperview()
         }
     }
     
     func setStyle() {
-    
-        backgroundView.do {
-            $0.layer.borderWidth = 2
-            $0.layer.borderColor = UIColor.gray02.cgColor
-            $0.roundCorners(cornerRadius: 11, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
-        }
         
         titleLabel.do {
             $0.setLabel(text: "이상형", textColor: .gray06, font: .pretendard(.title_bold_18))

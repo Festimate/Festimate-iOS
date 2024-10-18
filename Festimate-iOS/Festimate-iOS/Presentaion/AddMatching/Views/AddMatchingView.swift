@@ -24,9 +24,9 @@ class AddMatchingView: UIView {
     
     private let infoStackView: UIStackView = UIStackView()
     
-    private let idealTypeButton: AddMatchingButton = AddMatchingButton()
+    let idealTypeButton: AddMatchingButton = AddMatchingButton()
     
-    private let preferenceButton: AddMatchingButton = AddMatchingButton()
+    let preferenceButton: AddMatchingButton = AddMatchingButton()
     
     private let buttonStackView: UIStackView = UIStackView()
     
@@ -152,7 +152,16 @@ class AddMatchingView: UIView {
             $0.setLabel(text: "모두 입력해야 매칭이 시작됩니다!", textColor: .mainCoral, font: .pretendard(.body_semi_13))
         }
         
+        idealTypeButton.do {
+            $0.layer.borderWidth = 2
+            $0.layer.borderColor = UIColor.gray02.cgColor
+            $0.roundCorners(cornerRadius: 11, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+        }
+        
         preferenceButton.do {
+            $0.layer.borderWidth = 2
+            $0.layer.borderColor = UIColor.gray02.cgColor
+            $0.roundCorners(cornerRadius: 11, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
             $0.titleLabel.text = "연애 취향"
             $0.subTitleLabel.text = "나와 얼마나 잘 맞을까?"
         }

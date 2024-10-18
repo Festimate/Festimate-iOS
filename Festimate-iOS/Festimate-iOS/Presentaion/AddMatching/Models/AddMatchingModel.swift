@@ -12,7 +12,7 @@ struct AddMatchingModel {
 
 extension AddMatchingModel {
     static func sampleData() -> AddMatchingModel {
-        return AddMatchingModel(isIdealTypeInput: true, isPreferenceInput: true)
+        return AddMatchingModel(isIdealTypeInput: false, isPreferenceInput: true)
     }
 }
 

@@ -62,13 +62,32 @@ private extension AddMatchingViewController {
     }
     
     func updateButtonState() {
-        let isEnabled = matchingInputData.isIdealTypeInput && matchingInputData.isPreferenceInput
+        let isIdealTypeInput = matchingInputData.isIdealTypeInput
+        let isPreferenceInput = matchingInputData.isPreferenceInput
+        let isEnabled = isIdealTypeInput && isPreferenceInput
+        
+        setButtonState(isIdealTypeInput: isIdealTypeInput, isPreferenceInput: isPreferenceInput)
         setMatchingButtonEnabled(isEnabled)
     }
     
     func setMatchingButtonEnabled(_ isEnabled: Bool) {
         addMatchingView.matchingButton.backgroundColor = isEnabled ? .mainCoral : .gray03
         addMatchingView.matchingButton.isEnabled = isEnabled
+    }
+    
+    func setButtonState(isIdealTypeInput: Bool, isPreferenceInput: Bool) {
+        if isIdealTypeInput {
+            activeButton(addMatchingView.idealTypeButton)
+        }
+        
+        if isPreferenceInput {
+            activeButton(addMatchingView.preferenceButton)
+        }
+    }
+    
+    func activeButton(_ button: UIView) {
+        button.backgroundColor = .subCoral
+        button.layer.borderColor = UIColor.mainCoral.cgColor
     }
     
 }
