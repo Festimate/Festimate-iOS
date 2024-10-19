@@ -61,3 +61,24 @@ final class timeCollectionViewCell: UICollectionViewCell {
     }
     
 }
+
+extension timeCollectionViewCell {
+    
+    func configure(time: String) {
+        timeLabel.text = time
+    }
+    
+    // 선택했을 때 버튼 색 속성 변경
+    func updateSelectionState(_ isSelected: Bool) {
+        if isSelected {
+            grayBoxView.backgroundColor = .mainCoral
+            timeLabel.textColor = .fmWhite
+        } else  {
+            grayBoxView.backgroundColor = .gray01
+            timeLabel.textColor = .gray04
+        }
+    }
+    
+}
+
+

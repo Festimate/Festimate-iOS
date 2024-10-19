@@ -91,9 +91,19 @@ extension AvailableTimeViewController: UICollectionViewDataSource {
         let time = timeData[indexPath.item]
         
         cell.configure(time: time)
+        cell.updateSelectionState(false)
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? timeCollectionViewCell else { return }
+        cell.updateSelectionState(true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? timeCollectionViewCell else { return }
+        cell.updateSelectionState(false)
+    }
 }
 
 
