@@ -57,3 +57,43 @@ final class AvailableTimeViewController: UIViewController {
     }
     
 }
+
+extension AvailableTimeViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let cellWidth: CGFloat = (ScreenUtils.width - 28 - 32) / 3
+        let cellHeight: CGFloat = 43
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 14
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 14
+    }
+}
+
+
+extension AvailableTimeViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return timeData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: timeCollectionViewCell.cellIdentifier, for: indexPath) as? timeCollectionViewCell else { return UICollectionViewCell() }
+        
+        let time = timeData[indexPath.item]
+        
+        cell.configure(time: time)
+        return cell
+    }
+    
+}
+
+
