@@ -18,7 +18,7 @@ class DressInfoView: UIView {
     
     private let titleLabel: UILabel = UILabel()
     
-    private let timeImageView: UIImageView = UIImageView(image: .dress)
+    private let dressImageView: UIImageView = UIImageView(image: .dress)
     
     private let infoIcon: UIImageView = UIImageView(image: .infoIcon)
     
@@ -30,7 +30,7 @@ class DressInfoView: UIView {
     
     let textCountLabel: UILabel = UILabel()
 
-    let nextButton: UIButton = UIButton()
+    let completeButton: UIButton = UIButton()
     
     // MARK: - Properties
     
@@ -50,13 +50,13 @@ class DressInfoView: UIView {
         addSubviews(
             backButton,
             titleLabel,
-            timeImageView,
+            dressImageView,
             infoIcon,
             infoLabel,
             triangleView,
             dressInfoTextView,
             textCountLabel,
-            nextButton
+            completeButton
         )
     }
     
@@ -72,7 +72,7 @@ class DressInfoView: UIView {
             $0.leading.equalToSuperview().inset(16)
         }
         
-        timeImageView.snp.makeConstraints {
+        dressImageView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(87)
             $0.trailing.equalToSuperview()
             $0.width.equalTo(134)
@@ -106,7 +106,7 @@ class DressInfoView: UIView {
             $0.trailing.equalTo(dressInfoTextView)
         }
         
-        nextButton.snp.makeConstraints {
+        completeButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(38)
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(54)
@@ -145,8 +145,8 @@ class DressInfoView: UIView {
             $0.setLabel(text: "0/50", textColor: .gray04, font: .pretendard(.body_med_13))
         }
         
-        nextButton.do {
-            $0.setButton(title: "다음", backgroundColor: .gray03)
+        completeButton.do {
+            $0.setButton(title: "완료", backgroundColor: .gray03)
         }
     }
     
