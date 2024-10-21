@@ -121,7 +121,8 @@ class DressInfoView: UIView {
         }
         
         titleLabel.do {
-            $0.setLabel(text: "당신을 찾을 수 있는\n착장 정보를 알려주세요", alignment: .left, textColor: .gray06, font: .pretendard(.title_bold_18))
+            $0.setLabel(text: "당신을 찾을 수 있는\n착장 정보를 알려주세요!", alignment: .left, textColor: .gray06, font: .pretendard(.title_bold_18))
+            $0.setColorForText("착장 정보", with: .mainCoral)
         }
         
         infoLabel.do {

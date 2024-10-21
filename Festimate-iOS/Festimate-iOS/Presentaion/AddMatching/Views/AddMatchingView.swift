@@ -137,6 +137,7 @@ class AddMatchingView: UIView {
         
         titleLabel.do {
             $0.setLabel(text:"두근두근\n나의 FestiMate를 찾아봐요", textColor: .gray06, font: .pretendard(.title_bold_20))
+            $0.setColorForText("FestiMate", with: .mainCoral)
         }
         
         infoLabel.do {

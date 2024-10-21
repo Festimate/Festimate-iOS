@@ -104,7 +104,8 @@ class AvailableTimeView: UIView {
         }
         
         titleLabel.do {
-            $0.setLabel(text: "만날 수 있는 시간을\n모두 골라주세요", alignment: .left, textColor: .gray06, font: .pretendard(.title_bold_18))
+            $0.setLabel(text: "만날 수 있는 시간을\n모두 골라주세요!", alignment: .left, textColor: .gray06, font: .pretendard(.title_bold_18))
+            $0.setColorForText("시간", with: .mainCoral)
         }
         
         infoLabel.do {
