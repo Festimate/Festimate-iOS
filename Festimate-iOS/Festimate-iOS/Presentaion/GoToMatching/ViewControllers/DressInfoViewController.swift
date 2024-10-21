@@ -26,7 +26,7 @@ final class DressInfoViewController: UIViewController {
         setStyle()
         setDelegate()
         setActions()
-        updateNextButtonState()
+        updateCompleteButtonState()
     }
     
     func setHierarchy() {
@@ -50,7 +50,7 @@ final class DressInfoViewController: UIViewController {
     
     func setActions() {
         dressInfoView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
-        //        dressInfoView.nextButton.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
+        dressInfoView.completeButton.addTarget(self, action: #selector(completeButtonDidTap), for: .touchUpInside)
     }
     
 }
@@ -63,13 +63,18 @@ extension DressInfoViewController {
     }
     
     @objc
-    func nextButtonDidTap() {
-        let dressInfoViewController = DressInfoViewController()
-        self.navigationController?.pushViewController(dressInfoViewController, animated: true)
+    func completeButtonDidTap() {
+        let bankAccountInfoViewController = BankAccountInfoViewController()
+        self.navigationController?.pushViewController(bankAccountInfoViewController, animated: true)
     }
     
-    func updateNextButtonState() {
+    func updateCompleteButtonState() {
         
+        //placeholder도 입력된 문자로 인식해서 색상으로 조건 추가해야함
+        let isTextEntered = !dressInfoView.dressInfoTextView.text.isEmpty && dressInfoView.dressInfoTextView.textColor != .gray04
+        
+        dressInfoView.completeButton.backgroundColor = isTextEntered ? .mainCoral : .gray03
+        dressInfoView.completeButton.isEnabled = isTextEntered
     }
     
 }
@@ -90,7 +95,7 @@ extension DressInfoViewController: UITextViewDelegate {
         let textCount = currentText.count
         dressInfoView.textCountLabel.text = "\(textCount)/50"
         textView.textColor = textCount == 0 ? .gray04 : .gray06
-        updateNextButtonState() // 버튼 상태 업데이트
+        updateCompleteButtonState() // 버튼 상태 업데이트
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -111,3 +116,4 @@ extension DressInfoViewController: UITextViewDelegate {
         }
     }
 }
+
