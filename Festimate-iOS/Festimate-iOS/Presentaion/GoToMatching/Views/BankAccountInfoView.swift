@@ -24,11 +24,11 @@ class BankAccountInfoView: UIView {
     
     private let bankLogoImage: UIImageView = UIImageView(image: .bankLogo)
     
-    private let bankInfoLabel: UILabel = UILabel()
+    let bankInfoLabel: UILabel = UILabel()
     
     private let bankInfoStackView: UIStackView = UIStackView()
     
-    private let copyButton: UIButton = UIButton()
+    let copyButton: UIButton = UIButton()
     
     private let lineView: UIView = UIView()
     
@@ -150,7 +150,8 @@ class BankAccountInfoView: UIView {
         
         copyButton.do {
             $0.setButton(title: "계좌번호 복사하기",backgroundColor: .clear, titleColor: .gray04, font: .pretendard(.body_med_13))
-            $0.setImage(UIImage(resource: .copyIcon), for: .normal) // 이미지를 추가
+            $0.setImage(UIImage(resource: .copyIcon), for: .normal)
+            $0.adjustsImageWhenHighlighted = false
             $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
         }
         

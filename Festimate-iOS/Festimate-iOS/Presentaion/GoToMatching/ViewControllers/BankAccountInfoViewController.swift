@@ -15,9 +15,7 @@ final class BankAccountInfoViewController: UIViewController {
     // MARK: - UI Properties
     
     let bankAccountInfoView: BankAccountInfoView = BankAccountInfoView()
-    
-    // MARK: - Properties
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +23,6 @@ final class BankAccountInfoViewController: UIViewController {
         setLayout()
         setStyle()
         setActions()
-        updateNextButtonState()
     }
     
     func setHierarchy() {
@@ -45,8 +42,7 @@ final class BankAccountInfoViewController: UIViewController {
     
     
     func setActions() {
-//        bankAccountInfoView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
-//        bankAccountInfoView.nextButton.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
+        bankAccountInfoView.copyButton.addTarget(self, action: #selector(copyAccountNumber), for: .touchUpInside)
     }
     
 }
@@ -54,8 +50,9 @@ final class BankAccountInfoViewController: UIViewController {
 extension BankAccountInfoViewController {
     
     @objc
-    func backButtonDidTap() {
-        self.navigationController?.popViewController(animated: true)
+    func copyAccountNumber() {
+        UIPasteboard.general.string = bankAccountInfoView.bankInfoLabel.text
+        showToast()
     }
     
     @objc
@@ -64,8 +61,26 @@ extension BankAccountInfoViewController {
         self.navigationController?.pushViewController(bankAccountInfoViewController, animated: true)
     }
     
-    func updateNextButtonState() {
-
+    //토스트 메세지 띄우기
+    func showToast() {
+        guard let windowScene = UIApplication.shared.connectedScenes
+            .first(where: { $0 is UIWindowScene }) as? UIWindowScene,
+              let rootView = windowScene.windows.first else { return }
+        
+        let toastView = ToastView()
+        rootView.addSubview(toastView)
+        
+        toastView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(518)
+            $0.horizontalEdges.equalToSuperview().inset(47)
+            $0.height.equalTo(63)
+        }
+        
+        UIView.animate(withDuration: 3.0) {
+            toastView.alpha = 0
+        } completion: { _ in
+            toastView.removeFromSuperview()
+        }
     }
     
 }
