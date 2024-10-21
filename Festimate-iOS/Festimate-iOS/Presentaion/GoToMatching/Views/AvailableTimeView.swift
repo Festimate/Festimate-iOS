@@ -14,7 +14,7 @@ class AvailableTimeView: UIView {
     
     // MARK: - UI Properties
 
-    private let backButton: UIButton = UIButton()
+    let backButton: UIButton = UIButton()
     
     private let titleLabel: UILabel = UILabel()
     
@@ -33,7 +33,7 @@ class AvailableTimeView: UIView {
         return collectionView
     }()
     
-    private let nextButton: UIButton = UIButton()
+    let nextButton: UIButton = UIButton()
     
     // MARK: - Properties
     
@@ -118,6 +118,7 @@ class AvailableTimeView: UIView {
         
         setTimeLabel.do {
             $0.setLabel(text: "가능한 시간대 설정하기 *", textColor: .gray06, font: .pretendard(.body_semi_15))
+            $0.setColorForText("*", with: .mainCoral)
         }
         
         nextButton.do {

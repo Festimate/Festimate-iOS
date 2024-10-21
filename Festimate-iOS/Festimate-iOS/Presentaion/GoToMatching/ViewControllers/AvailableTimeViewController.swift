@@ -28,6 +28,7 @@ final class AvailableTimeViewController: UIViewController {
         setStyle()
         registerCell()
         setDelegate()
+        setActions()
     }
     
     func setHierarchy() {
@@ -54,6 +55,19 @@ final class AvailableTimeViewController: UIViewController {
     func setDelegate() {
         availableTimeView.availableTimeCollectionView.delegate = self
         availableTimeView.availableTimeCollectionView.dataSource = self
+    }
+    
+    func setActions() {
+        availableTimeView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+    }
+    
+}
+
+extension AvailableTimeViewController {
+    
+    @objc
+    func backButtonDidTap() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
