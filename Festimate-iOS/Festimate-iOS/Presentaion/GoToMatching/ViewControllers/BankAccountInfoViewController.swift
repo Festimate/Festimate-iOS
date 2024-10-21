@@ -43,6 +43,7 @@ final class BankAccountInfoViewController: UIViewController {
     
     func setActions() {
         bankAccountInfoView.copyButton.addTarget(self, action: #selector(copyAccountNumber), for: .touchUpInside)
+        bankAccountInfoView.backToMainButton.addTarget(self, action: #selector(backToMainButtonDidTap), for: .touchUpInside)
     }
     
 }
@@ -56,9 +57,11 @@ extension BankAccountInfoViewController {
     }
     
     @objc
-    func nextButtonDidTap() {
-        let bankAccountInfoViewController = BankAccountInfoViewController()
-        self.navigationController?.pushViewController(bankAccountInfoViewController, animated: true)
+    func backToMainButtonDidTap() {
+        guard let navigationController = self.navigationController else { return }
+        let mainViewController = MainViewController()
+        
+        navigationController.setViewControllers([mainViewController], animated: true)
     }
     
     //토스트 메세지 띄우기
