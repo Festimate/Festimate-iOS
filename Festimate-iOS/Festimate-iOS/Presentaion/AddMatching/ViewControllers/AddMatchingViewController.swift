@@ -24,6 +24,10 @@ final class AddMatchingViewController: UIViewController {
         }
     }
     
+    private var isMatchingEnabled: Bool {
+        return matchingInputData.isIdealTypeInput && matchingInputData.isPreferenceInput
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +55,7 @@ final class AddMatchingViewController: UIViewController {
     
     func setActions() {
         addMatchingView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+        addMatchingView.matchingButton.addTarget(self, action: #selector(matchingButtonDidTap), for: .touchUpInside)
     }
 }
 
@@ -61,13 +66,17 @@ private extension AddMatchingViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc
+    func matchingButtonDidTap() {
+        if isMatchingEnabled {
+            let availableTimeViewController = AvailableTimeViewController()
+            self.navigationController?.pushViewController(availableTimeViewController, animated: true)
+        }
+    }
+    
     func updateButtonState() {
-        let isIdealTypeInput = matchingInputData.isIdealTypeInput
-        let isPreferenceInput = matchingInputData.isPreferenceInput
-        let isEnabled = isIdealTypeInput && isPreferenceInput
-        
-        setButtonState(isIdealTypeInput: isIdealTypeInput, isPreferenceInput: isPreferenceInput)
-        setMatchingButtonEnabled(isEnabled)
+        setButtonState(isIdealTypeInput: matchingInputData.isIdealTypeInput, isPreferenceInput: matchingInputData.isPreferenceInput)
+        setMatchingButtonEnabled(isMatchingEnabled)
     }
     
     func setMatchingButtonEnabled(_ isEnabled: Bool) {
