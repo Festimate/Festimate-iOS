@@ -26,12 +26,7 @@ class AvailableTimeView: UIView {
     
     private let setTimeLabel: UILabel = UILabel()
         
-    let availableTimeCollectionView : UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-        return collectionView
-    }()
+    let availableTimeCollectionView : UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     let nextButton: UIButton = UIButton()
     

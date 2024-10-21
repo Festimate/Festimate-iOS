@@ -20,6 +20,8 @@ final class AvailableTimeViewController: UIViewController {
     
     var timeData = AvailableTimeModel.allHours
     
+    var selectedTimeCell: Set<Int> = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +31,7 @@ final class AvailableTimeViewController: UIViewController {
         registerCell()
         setDelegate()
         setActions()
+        updateNextButtonState()
     }
     
     func setHierarchy() {
@@ -59,6 +62,7 @@ final class AvailableTimeViewController: UIViewController {
     
     func setActions() {
         availableTimeView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+        availableTimeView.nextButton.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
     }
     
 }
@@ -68,6 +72,18 @@ extension AvailableTimeViewController {
     @objc
     func backButtonDidTap() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func nextButtonDidTap() {
+        let dressInfoViewController = DressInfoViewController()
+        self.navigationController?.pushViewController(dressInfoViewController, animated: true)
+    }
+    
+    func updateNextButtonState() {
+        let isTimeSelected = !selectedTimeCell.isEmpty
+        availableTimeView.nextButton.backgroundColor = isTimeSelected ? .mainCoral : .gray03
+        availableTimeView.nextButton.isEnabled = isTimeSelected
     }
     
 }
@@ -109,14 +125,20 @@ extension AvailableTimeViewController: UICollectionViewDataSource {
         return cell
     }
     
+    // 선택된 셀 추가
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? timeCollectionViewCell else { return }
+        selectedTimeCell.insert(indexPath.item)
         cell.updateSelectionState(true)
+        updateNextButtonState()
     }
-    
+            
+    // 선택 해제된 셀 제거
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? timeCollectionViewCell else { return }
+        selectedTimeCell.remove(indexPath.item)
         cell.updateSelectionState(false)
+        updateNextButtonState()
     }
 }
 
