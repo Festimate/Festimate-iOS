@@ -25,7 +25,7 @@ class IdealTypeInputStep2View: UIView {
     
     let faceTypeCollectionView : UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    private let completeButton: UIButton = UIButton()
+    let completeButton: UIButton = UIButton()
     
     // MARK: - Properties
     
@@ -102,7 +102,7 @@ class IdealTypeInputStep2View: UIView {
         }
         
         completeButton.do {
-            $0.setButton(title: "완료")
+            $0.setButton(title: "완료", backgroundColor: .gray03)
         }
     }
     

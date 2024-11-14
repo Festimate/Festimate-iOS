@@ -66,7 +66,11 @@ final class IdealTypeInputStep2ViewController: UIViewController {
 
 extension IdealTypeInputStep2ViewController {
     
-    
+    func updateCompleteButtonState() {
+        let isFaceTypeSelected = !selectedFaceTypeCell.isEmpty
+        idealTypeInputStep2View.completeButton.backgroundColor = isFaceTypeSelected ? .mainCoral : .gray03
+        idealTypeInputStep2View.completeButton.isEnabled = isFaceTypeSelected
+    }
     
 }
 
@@ -114,12 +118,14 @@ extension IdealTypeInputStep2ViewController: UICollectionViewDataSource {
         guard let cell = collectionView.cellForItem(at: indexPath) as? SelectButtonCollectionViewCell else { return }
         selectedFaceTypeCell.insert(indexPath.item)
         cell.updateSelectionState(true)
+        updateCompleteButtonState()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? SelectButtonCollectionViewCell else { return }
         selectedFaceTypeCell.remove(indexPath.item)
         cell.updateSelectionState(false)
+        updateCompleteButtonState()
     }
 }
 
