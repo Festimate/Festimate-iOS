@@ -18,7 +18,7 @@ final class AvailableTimeViewController: UIViewController {
     
     // MARK: - Properties
     
-    var timeData = AvailableTimeModel.allHours
+    var timeData = AvailableTime.allHours
     
     var selectedTimeCell: Set<Int> = []
     

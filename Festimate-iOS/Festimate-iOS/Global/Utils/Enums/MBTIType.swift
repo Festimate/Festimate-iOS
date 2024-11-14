@@ -1,5 +1,5 @@
 //
-//  IdealTypeInputStep1Model.swift
+//  MBTIType.swift
 //  Festimate-iOS
 //
 //  Created by 김민서 on 11/14/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum IdealTypeInputStep1Model: String, CaseIterable {
+enum MBTIType: String, CaseIterable {
     case e = "E"
     case i = "I"
     case n = "N"
@@ -19,6 +19,6 @@ enum IdealTypeInputStep1Model: String, CaseIterable {
  
     
     static var mbtiData: [String] {
-        return IdealTypeInputStep1Model.allCases.map { $0.rawValue }
+        return MBTIType.allCases.map { $0.rawValue }
     }
 }
