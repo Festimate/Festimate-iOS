@@ -42,6 +42,7 @@ final class AvailableTimeViewController: UIViewController {
     func setLayout() {
         availableTimeView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            
         }
     }
     
