@@ -16,9 +16,22 @@ enum MBTIType: String, CaseIterable {
     case t = "T"
     case p = "P"
     case J = "J"
- 
+    
     
     static var mbtiData: [String] {
         return MBTIType.allCases.map { $0.rawValue }
+    }
+    
+    func getGroup() -> String {
+        switch self {
+        case .e, .i:
+            return "EI"
+        case .n, .s:
+            return "NS"
+        case .f, .t:
+            return "FT"
+        case .p, .J:
+            return "PJ"
+        }
     }
 }

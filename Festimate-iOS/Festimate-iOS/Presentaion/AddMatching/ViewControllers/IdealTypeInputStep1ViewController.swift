@@ -19,7 +19,9 @@ final class IdealTypeInputStep1ViewController: UIViewController {
     // MARK: - Properties
     
     var mbtiData = MBTIType.mbtiData
-  
+    
+    var selectedMBTI: [String: String] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +58,7 @@ final class IdealTypeInputStep1ViewController: UIViewController {
     }
     
     func setActions() {
-  
+        
     }
 }
 
@@ -76,6 +78,24 @@ extension IdealTypeInputStep1ViewController: UICollectionViewDelegateFlowLayout 
     }
 }
 
+extension IdealTypeInputStep1ViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let type = MBTIType(rawValue: mbtiData[indexPath.item]) else { return }
+        
+        let group = type.getGroup()
+        
+        if selectedMBTI[group] == type.rawValue {
+            selectedMBTI[group] = nil
+        } else {
+            selectedMBTI[group] = type.rawValue
+        }
+        
+        print("Current selected MBTI:", selectedMBTI)
+        
+        collectionView.reloadData()
+    }
+}
 
 extension IdealTypeInputStep1ViewController: UICollectionViewDataSource {
     
@@ -87,11 +107,17 @@ extension IdealTypeInputStep1ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectButtonCollectionViewCell.cellIdentifier, for: indexPath) as? SelectButtonCollectionViewCell else { return UICollectionViewCell() }
         
-        let time = mbtiData[indexPath.item]
+        let typeString = mbtiData[indexPath.item]
+        guard let type = MBTIType(rawValue: typeString) else { return UICollectionViewCell() }
         
-        cell.configure(time: time)
-        cell.updateSelectionState(false)
+        let group = type.getGroup() // getGroup을 직접 호출
+        let isSelected = selectedMBTI[group] == type.rawValue
+        
+        cell.configure(time: typeString)
+        cell.updateSelectionState(isSelected)
+        
         return cell
     }
+    
 }
 
