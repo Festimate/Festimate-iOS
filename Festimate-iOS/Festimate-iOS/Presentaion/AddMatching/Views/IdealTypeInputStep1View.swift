@@ -175,12 +175,14 @@ class IdealTypeInputStep1View: UIView {
         
         minAgeTextField.do {
             $0.setStyle(placeholder: "최소")
+            $0.keyboardType = .numberPad 
         }
         
         ageRangeLine.backgroundColor = .gray06
         
         maxAgeTextField.do {
             $0.setStyle(placeholder: "최대")
+            $0.keyboardType = .numberPad
         }
         
         yearsLabel.do {
@@ -194,12 +196,14 @@ class IdealTypeInputStep1View: UIView {
         
         minHeightTextField.do {
             $0.setStyle(placeholder: "최소")
+            $0.keyboardType = .numberPad
         }
         
         heightRangeLine.backgroundColor = .gray06
         
         maxHeightTextField.do {
             $0.setStyle(placeholder: "최대")
+            $0.keyboardType = .numberPad
         }
         
         cmLabel.do {
