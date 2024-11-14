@@ -19,7 +19,9 @@ final class IdealTypeInputStep2ViewController: UIViewController {
     // MARK: - Properties
     
     var faceTypeData = FaceType.faceTypeData
-  
+    
+    var selectedFaceTypeCell: Set<Int> = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +45,8 @@ final class IdealTypeInputStep2ViewController: UIViewController {
     }
     
     func setStyle() {
+        idealTypeInputStep2View.faceTypeCollectionView.allowsMultipleSelection = true
+        
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -56,8 +60,14 @@ final class IdealTypeInputStep2ViewController: UIViewController {
     }
     
     func setActions() {
-  
+        
     }
+}
+
+extension IdealTypeInputStep2ViewController {
+    
+    
+    
 }
 
 extension IdealTypeInputStep2ViewController: UICollectionViewDelegateFlowLayout {
@@ -92,6 +102,24 @@ extension IdealTypeInputStep2ViewController: UICollectionViewDataSource {
         cell.configure(time: time)
         cell.updateSelectionState(false)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard selectedFaceTypeCell.count < 2 else {
+            // 이미 두 개가 선택되어 있으면, 더 이상 선택하지 못하도록 처리
+            collectionView.deselectItem(at: indexPath, animated: true)
+            return
+        }
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? SelectButtonCollectionViewCell else { return }
+        selectedFaceTypeCell.insert(indexPath.item)
+        cell.updateSelectionState(true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? SelectButtonCollectionViewCell else { return }
+        selectedFaceTypeCell.remove(indexPath.item)
+        cell.updateSelectionState(false)
     }
 }
 
