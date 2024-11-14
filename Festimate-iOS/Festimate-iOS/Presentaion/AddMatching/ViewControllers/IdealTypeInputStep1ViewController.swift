@@ -47,7 +47,7 @@ final class IdealTypeInputStep1ViewController: UIViewController {
     }
     
     func registerCell() {
-        idealTypeInputStep1View.mbtiCollectionView.register(timeCollectionViewCell.self, forCellWithReuseIdentifier: timeCollectionViewCell.cellIdentifier)
+        idealTypeInputStep1View.mbtiCollectionView.register(SelectButtonCollectionViewCell.self, forCellWithReuseIdentifier: SelectButtonCollectionViewCell.cellIdentifier)
     }
     
     func setDelegate() {
@@ -85,7 +85,7 @@ extension IdealTypeInputStep1ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: timeCollectionViewCell.cellIdentifier, for: indexPath) as? timeCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectButtonCollectionViewCell.cellIdentifier, for: indexPath) as? SelectButtonCollectionViewCell else { return UICollectionViewCell() }
         
         let time = mbtiData[indexPath.item]
         

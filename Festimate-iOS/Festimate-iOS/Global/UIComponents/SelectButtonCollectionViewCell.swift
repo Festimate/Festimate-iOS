@@ -10,7 +10,7 @@ import UIKit
 import Then
 import SnapKit
 
-final class timeCollectionViewCell: UICollectionViewCell {
+final class SelectButtonCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Properties
     
@@ -62,7 +62,7 @@ final class timeCollectionViewCell: UICollectionViewCell {
     
 }
 
-extension timeCollectionViewCell {
+extension SelectButtonCollectionViewCell {
     
     func configure(time: String) {
         timeLabel.text = time

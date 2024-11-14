@@ -53,7 +53,7 @@ final class AvailableTimeViewController: UIViewController {
     }
     
     func registerCell() {
-        availableTimeView.availableTimeCollectionView.register(timeCollectionViewCell.self, forCellWithReuseIdentifier: timeCollectionViewCell.cellIdentifier)
+        availableTimeView.availableTimeCollectionView.register(SelectButtonCollectionViewCell.self, forCellWithReuseIdentifier: SelectButtonCollectionViewCell.cellIdentifier)
     }
     
     func setDelegate() {
@@ -117,7 +117,7 @@ extension AvailableTimeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: timeCollectionViewCell.cellIdentifier, for: indexPath) as? timeCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectButtonCollectionViewCell.cellIdentifier, for: indexPath) as? SelectButtonCollectionViewCell else { return UICollectionViewCell() }
         
         let time = timeData[indexPath.item]
         
@@ -128,7 +128,7 @@ extension AvailableTimeViewController: UICollectionViewDataSource {
     
     // 선택된 셀 추가
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? timeCollectionViewCell else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? SelectButtonCollectionViewCell else { return }
         selectedTimeCell.insert(indexPath.item)
         cell.updateSelectionState(true)
         updateNextButtonState()
@@ -136,7 +136,7 @@ extension AvailableTimeViewController: UICollectionViewDataSource {
             
     // 선택 해제된 셀 제거
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? timeCollectionViewCell else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? SelectButtonCollectionViewCell else { return }
         selectedTimeCell.remove(indexPath.item)
         cell.updateSelectionState(false)
         updateNextButtonState()
