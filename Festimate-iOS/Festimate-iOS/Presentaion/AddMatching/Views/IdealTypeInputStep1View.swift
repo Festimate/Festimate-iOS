@@ -160,7 +160,7 @@ class IdealTypeInputStep1View: UIView {
         numLabel.do {
             $0.setLabel(text: "1",textColor: .fmWhite, font: .pretendard(.body_bold_15))
             $0.backgroundColor = .mainCoral
-            $0.layer.cornerRadius = 15
+            $0.layer.cornerRadius = 16
             $0.clipsToBounds = true
         }
         
