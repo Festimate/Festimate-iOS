@@ -55,6 +55,8 @@ final class AddMatchingViewController: UIViewController {
     
     func setActions() {
         addMatchingView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+        addMatchingView.idealTypeButton.isUserInteractionEnabled = true
+        addMatchingView.idealTypeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.idealTypeButtonDidTap)))
         addMatchingView.matchingButton.addTarget(self, action: #selector(matchingButtonDidTap), for: .touchUpInside)
     }
 }
@@ -64,6 +66,12 @@ private extension AddMatchingViewController {
     @objc
     func backButtonDidTap() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func idealTypeButtonDidTap() {
+        let idealTypeInputStep1ViewController = IdealTypeInputStep1ViewController()
+        self.navigationController?.pushViewController(idealTypeInputStep1ViewController, animated: true)
     }
     
     @objc

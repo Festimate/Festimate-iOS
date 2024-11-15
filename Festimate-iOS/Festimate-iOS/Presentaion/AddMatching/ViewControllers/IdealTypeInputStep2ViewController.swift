@@ -60,11 +60,16 @@ final class IdealTypeInputStep2ViewController: UIViewController {
     }
     
     func setActions() {
-        
+        idealTypeInputStep2View.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
     }
 }
 
 extension IdealTypeInputStep2ViewController {
+    
+    @objc
+    func backButtonDidTap() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     func updateCompleteButtonState() {
         let isFaceTypeSelected = !selectedFaceTypeCell.isEmpty

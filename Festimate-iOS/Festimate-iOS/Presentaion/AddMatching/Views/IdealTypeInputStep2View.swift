@@ -13,6 +13,9 @@ import Then
 class IdealTypeInputStep2View: UIView {
     
     // MARK: - UI Properties
+    
+    let backButton: UIButton = UIButton()
+
     private let numLabel: UILabel = UILabel()
     
     private let titleLabel: UILabel = UILabel()
@@ -43,10 +46,17 @@ class IdealTypeInputStep2View: UIView {
     
     func setHierarchy() {
         infoStackView.addArrangedSubviews(infoIcon, infoLabel)
-        addSubviews(numLabel, titleLabel, infoStackView, faceTypeCollectionView, completeButton)
+        addSubviews(backButton, numLabel, titleLabel, infoStackView, faceTypeCollectionView, completeButton)
     }
     
     func setLayout() {
+        
+        backButton.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(50)
+            $0.leading.equalToSuperview()
+            $0.size.equalTo(44)
+        }
+        
         numLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(87)
             $0.centerX.equalToSuperview()
@@ -79,6 +89,10 @@ class IdealTypeInputStep2View: UIView {
     
     func setStyle() {
         self.backgroundColor = .white
+        
+        backButton.do {
+            $0.setImage(.backIcon, for: .normal)
+        }
         
         numLabel.do {
             $0.setLabel(text: "2",textColor: .fmWhite, font: .pretendard(.body_bold_15))

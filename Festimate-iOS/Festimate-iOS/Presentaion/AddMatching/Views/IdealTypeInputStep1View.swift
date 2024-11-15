@@ -13,6 +13,9 @@ import Then
 class IdealTypeInputStep1View: UIView {
     
     // MARK: - UI Properties
+    
+    let backButton: UIButton = UIButton()
+    
     private let numLabel: UILabel = UILabel()
     
     private let titleLabel: UILabel = UILabel()
@@ -41,7 +44,7 @@ class IdealTypeInputStep1View: UIView {
     
     let mbtiCollectionView : UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    private let nextButton: UIButton = UIButton()
+    let nextButton: UIButton = UIButton()
     
     // MARK: - Properties
     
@@ -58,10 +61,17 @@ class IdealTypeInputStep1View: UIView {
     }
     
     func setHierarchy() {
-        addSubviews(numLabel, titleLabel, ageLabel, minAgeTextField, maxAgeTextField, ageRangeLine, yearsLabel, heightLabel, minHeightTextField, maxHeightTextField, heightRangeLine, cmLabel, mbtiLabel, mbtiCollectionView, nextButton)
+        addSubviews(backButton, numLabel, titleLabel, ageLabel, minAgeTextField, maxAgeTextField, ageRangeLine, yearsLabel, heightLabel, minHeightTextField, maxHeightTextField, heightRangeLine, cmLabel, mbtiLabel, mbtiCollectionView, nextButton)
     }
     
     func setLayout() {
+        
+        backButton.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(50)
+            $0.leading.equalToSuperview()
+            $0.size.equalTo(44)
+        }
+        
         numLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(87)
             $0.centerX.equalToSuperview()
@@ -156,6 +166,10 @@ class IdealTypeInputStep1View: UIView {
     
     func setStyle() {
         self.backgroundColor = .white
+        
+        backButton.do {
+            $0.setImage(.backIcon, for: .normal)
+        }
         
         numLabel.do {
             $0.setLabel(text: "1",textColor: .fmWhite, font: .pretendard(.body_bold_15))

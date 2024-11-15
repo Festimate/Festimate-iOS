@@ -58,8 +58,24 @@ final class IdealTypeInputStep1ViewController: UIViewController {
     }
     
     func setActions() {
-        
+        idealTypeInputStep1View.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+        idealTypeInputStep1View.nextButton.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
     }
+}
+
+extension IdealTypeInputStep1ViewController {
+    
+    @objc
+    func backButtonDidTap() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func nextButtonDidTap() {
+        let idealTypeInputStep2ViewController = IdealTypeInputStep2ViewController()
+        self.navigationController?.pushViewController(idealTypeInputStep2ViewController, animated: true)
+    }
+    
 }
 
 extension IdealTypeInputStep1ViewController: UICollectionViewDelegateFlowLayout {
