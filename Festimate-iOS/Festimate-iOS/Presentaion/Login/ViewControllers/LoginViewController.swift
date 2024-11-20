@@ -12,7 +12,7 @@ import SnapKit
 
 final class LoginViewController: UIViewController {
     
-    private let label = UILabel()
+    private let loginView = LoginView()
     
     // MARK: - UI Properties
     
@@ -25,11 +25,13 @@ final class LoginViewController: UIViewController {
     }
 
     func setHierarchy() {
-        
+        self.view.addSubview(loginView)
     }
     
     func setLayout() {
-        
+        loginView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func setStyle() {
