@@ -12,11 +12,14 @@ import Then
 
 class FestimateTextField: UITextField {
     
-    init(placeHolder: String) {
+    init(placeHolder: String, containButton: Bool = false) {
         super.init(frame: .zero)
         
         self.setPlaceholder(placeHolder, color: .gray04)
         setStyle()
+        if(containButton){
+            self.rightPadding(value: 150)
+        }
     }
     
     required init?(coder: NSCoder) {
