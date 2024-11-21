@@ -18,12 +18,12 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         setHierarchy()
         setLayout()
         setStyle()
+        addActions()
     }
-
+    
     func setHierarchy() {
         self.view.addSubview(loginView)
     }
@@ -36,6 +36,21 @@ final class LoginViewController: UIViewController {
     
     func setStyle() {
         self.view.backgroundColor = .mainCoral
+    }
+    
+    func addActions() {
+        loginView.appleLoginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+    }
+    
+    @objc
+    private func didTapLoginButton() {
+        navigateToNext()
+    }
+    
+    private func navigateToNext() {
+        print("눌림")
+        let nextViewController = RegisterViewController()
+        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
 

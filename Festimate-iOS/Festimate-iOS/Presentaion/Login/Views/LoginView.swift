@@ -18,9 +18,9 @@ class LoginView: UIView {
     
     private let kakaoLoginImage = UIImageView(image: .kakaoLogo)
     
-    private lazy var kakaoLoginButton = UIButton()
+    lazy var kakaoLoginButton = UIButton()
     
-    private lazy var appleLoginButton = UIButton()
+    lazy var appleLoginButton = UIButton()
     
     private let privacyPolicyLabel = UILabel()
     
