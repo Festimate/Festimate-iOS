@@ -14,8 +14,6 @@ final class LoginViewController: UIViewController {
     
     private let loginView = LoginView()
     
-    // MARK: - UI Properties
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setHierarchy()
@@ -48,7 +46,6 @@ final class LoginViewController: UIViewController {
     }
     
     private func navigateToNext() {
-        print("눌림")
         let nextViewController = RegisterViewController()
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
