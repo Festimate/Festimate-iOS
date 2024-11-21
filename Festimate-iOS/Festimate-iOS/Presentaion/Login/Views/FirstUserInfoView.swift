@@ -18,27 +18,27 @@ class FirstUserInfoView: UIView {
     
     private let nameInfoLabel = UILabel()
     
-    private let nameTextField = FestimateTextField(placeHolder: "이름을 입력해주세요")
+    let nameTextField = FestimateTextField(placeHolder: "이름을 입력해주세요")
     
     private let nicknameLabel = UILabel()
     
-    private let nicknameTextField = FestimateTextField(placeHolder: "닉네임을 입력해주세요")
+    let nicknameTextField = FestimateTextField(placeHolder: "닉네임을 입력해주세요", containButton: true)
     
-    private lazy var nicknameValidateButton = UIButton()
+    lazy var nicknameValidateButton = UIButton()
     
-    private let nicknameErrorLabel = UILabel()
+    let nicknameErrorLabel = UILabel()
     
     private let ageLabel = UILabel()
     
-    private let ageTextField = FestimateTextField(placeHolder: "나이를 입력해주세요")
+    let ageTextField = FestimateTextField(placeHolder: "나이를 입력해주세요")
     
     private let genderLabel = UILabel()
     
-    private let genderButtonStackView = UIStackView()
+    let genderButtonStackView = UIStackView()
     
-    private lazy var womanButton = UIButton()
+    lazy var womanButton = UIButton()
     
-    private lazy var manButton = UIButton()
+    lazy var manButton = UIButton()
     
     private let schoolLabel = UILabel()
     
@@ -46,7 +46,7 @@ class FirstUserInfoView: UIView {
     
     private let schoolInfoLabel = UILabel()
     
-    private let schoolTextField = FestimateTextField(placeHolder: "예) 가톨릭대학교")
+    let schoolTextField = FestimateTextField(placeHolder: "예) 가톨릭대학교")
     
     init() {
         super.init(frame: .zero)
@@ -70,7 +70,7 @@ class FirstUserInfoView: UIView {
     
     func setLayout() {
         nameLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
             $0.top.equalToSuperview().offset(16)
         }
         
@@ -86,18 +86,18 @@ class FirstUserInfoView: UIView {
         
         nameTextField.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(50)
         }
         
         nicknameLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
             $0.top.equalTo(nameTextField.snp.bottom).offset(14)
         }
         
         nicknameTextField.snp.makeConstraints {
             $0.top.equalTo(nicknameLabel.snp.bottom).offset(11)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(50)
         }
         
@@ -108,35 +108,35 @@ class FirstUserInfoView: UIView {
         }
         
         nicknameErrorLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
             $0.top.equalTo(nicknameTextField.snp.bottom).offset(4)
         }
         
         ageLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
             $0.top.equalTo(nicknameErrorLabel.snp.bottom).offset(4)
         }
         
         ageTextField.snp.makeConstraints {
             $0.top.equalTo(ageLabel.snp.bottom).offset(11)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(50)
         }
         
         genderLabel.snp.makeConstraints {
             $0.top.equalTo(ageTextField.snp.bottom).offset(14)
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
         }
         
         genderButtonStackView.snp.makeConstraints {
             $0.top.equalTo(genderLabel.snp.bottom).offset(11)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(50)
         }
         
         schoolLabel.snp.makeConstraints {
             $0.top.equalTo(genderButtonStackView.snp.bottom).offset(14)
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
         }
         
         schoolInfoIcon.snp.makeConstraints {
@@ -151,7 +151,7 @@ class FirstUserInfoView: UIView {
         
         schoolTextField.snp.makeConstraints {
             $0.top.equalTo(schoolLabel.snp.bottom).offset(11)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(50)
         }
     }
@@ -175,6 +175,8 @@ class FirstUserInfoView: UIView {
             $0.setButton(title: "중복확인", backgroundColor: .gray03, titleColor: .white, font: .pretendard(.body_semi_13), cornerRadius: 9)
             $0.isEnabled = false
         }
+        nicknameValidateButton.isUserInteractionEnabled = true
+        self.bringSubviewToFront(nicknameValidateButton)
         
         nicknameErrorLabel.do {
             $0.setLabel(text: "한글만 가능, 최소 1자 - 최대 10자", textColor: .gray04, font: .pretendard(.cap_reg_11))
@@ -210,6 +212,14 @@ class FirstUserInfoView: UIView {
         
         schoolInfoLabel.do {
             $0.setLabel(text: "학교 정보를 공개하고 싶지 않으시면 미입력해주세요", textColor: .gray04, font: .pretendard(.cap_reg_11))
+        }
+        
+        [nameTextField, nicknameTextField, ageTextField, schoolTextField].forEach {
+            $0.font = .pretendard(.body_med_13)
+        }
+        
+        ageTextField.do {
+            $0.keyboardType = .numberPad
         }
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class FirstUserInfoViewController: UIViewController {
 
-    // MARK: - UI Properties
+    let firstUserInfoView = FirstUserInfoView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +20,16 @@ class FirstUserInfoViewController: UIViewController {
     }
 
     func setHierarchy() {
+        self.view.addSubview(firstUserInfoView)
     }
     
     func setLayout() {
+        firstUserInfoView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func setStyle() {
-        self.view.backgroundColor = .mainCoral
+        self.view.backgroundColor = .white
     }
 }
