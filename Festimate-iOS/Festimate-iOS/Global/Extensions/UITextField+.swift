@@ -16,6 +16,12 @@ extension UITextField {
         self.rightViewMode = .always
     }
     
+    func rightPadding(value: CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: value, height: self.frame.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+    
     func setPlaceholder(_ text: String, color: UIColor) {
             attributedPlaceholder = NSAttributedString(
                 string: text,
