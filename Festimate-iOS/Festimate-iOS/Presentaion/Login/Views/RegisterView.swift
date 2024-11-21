@@ -12,15 +12,15 @@ import Then
 
 class RegisterView: UIView {
     
-    private lazy var backButton = UIButton()
+    let backButton = UIImageView(image: .backIcon)
     
-    private let numberLabel = UILabel()
+    let numberLabel = UILabel()
     
-    private let titleLabel = UILabel()
+    let titleLabel = UILabel()
     
-    private let containerView = UIView()
+    var containerView = UIView()
     
-    private lazy var registerButton = UIButton()
+    lazy var registerButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +57,7 @@ class RegisterView: UIView {
         }
         
         containerView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom)
             $0.bottom.equalTo(registerButton.snp.top)
         }
@@ -71,11 +71,7 @@ class RegisterView: UIView {
     
     func setStyle() {
         self.backgroundColor = .white
-        
-        backButton.do {
-            $0.setImage(UIImage(named: "back_icon"), for: .normal)
-        }
-        
+        backButton.isUserInteractionEnabled = true
         numberLabel.do {
             $0.setLabel(text: "1", numberOfLines: 1, textColor: .white, font: .pretendard(.body_bold_15))
             $0.backgroundColor = .mainCoral
