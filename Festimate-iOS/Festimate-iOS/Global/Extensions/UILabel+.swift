@@ -31,4 +31,11 @@ extension UILabel {
         }
     }
     
+    // 밑줄 긋는 메소드
+    func setUnderlinedText(_ text: String) {
+            let attributes: [NSAttributedString.Key: Any] = [
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+            ]
+            self.attributedText = NSAttributedString(string: text, attributes: attributes)
+        }
 }

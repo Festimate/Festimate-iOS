@@ -12,28 +12,42 @@ import SnapKit
 
 final class LoginViewController: UIViewController {
     
-    private let label = UILabel()
-    
-    // MARK: - UI Properties
+    private let loginView = LoginView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         setHierarchy()
         setLayout()
         setStyle()
+        addActions()
     }
-
+    
     func setHierarchy() {
-        
+        self.view.addSubview(loginView)
     }
     
     func setLayout() {
-        
+        loginView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func setStyle() {
         self.view.backgroundColor = .mainCoral
+    }
+    
+    func addActions() {
+        loginView.appleLoginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+    }
+    
+    @objc
+    private func didTapLoginButton() {
+        navigateToNext()
+    }
+    
+    private func navigateToNext() {
+        let nextViewController = RegisterViewController()
+        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
 
