@@ -19,7 +19,7 @@ final class DressInfoViewController: UIViewController {
     // MARK: - Properties
     
     var matchingModel: MatchingModel?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,13 +66,45 @@ extension DressInfoViewController {
     
     @objc
     func completeButtonDidTap() {
-        let bankAccountInfoViewController = BankAccountInfoViewController()
         matchingModel?.dress = dressInfoView.dressInfoTextView.text
-        self.navigationController?.pushViewController(bankAccountInfoViewController, animated: true)
+        
+        //아직 구현전이라 임시 데이터 지정
+        matchingModel?.questionList = [1, 3, 2, 2, 1]
+        
+        // MatchingModel을 PostMatchingRequest로 변환
+        guard let matchingModel = matchingModel else {
+            return
+        }
+        
+        let postMatchingRequest = PostMatchingRequest(
+            minHeight: matchingModel.minHeight,
+            maxHeight: matchingModel.maxHeight,
+            minAge: matchingModel.minAge,
+            maxAge: matchingModel.maxAge,
+            mbti: matchingModel.mbti,
+            appearanceList: matchingModel.appearanceList,
+            questionList: matchingModel.questionList,
+            timeList: matchingModel.timeList,
+            dress: matchingModel.dress
+        )
+        
+        postMatching(matching: postMatchingRequest) { success in
+            if success {
+                let bankAccountInfoViewController = BankAccountInfoViewController()
+                self.navigationController?.pushViewController(bankAccountInfoViewController, animated: true)
+            } else {
+                print("서버 통신 실패")
+            }
+        }
+    }
+    
+    func postMatching(matching: PostMatchingRequest, completion: @escaping (Bool) -> Void) {
+        NetworkService.shared.matchingService.postMatching(matching: matching) { success in
+            completion(success)
+        }
     }
     
     func updateCompleteButtonState() {
-        
         //placeholder도 입력된 문자로 인식해서 색상으로 조건 추가해야함
         let isTextEntered = !dressInfoView.dressInfoTextView.text.isEmpty && dressInfoView.dressInfoTextView.textColor != .gray04
         
