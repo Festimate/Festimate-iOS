@@ -76,6 +76,16 @@ extension IdealTypeInputStep1ViewController {
         self.navigationController?.pushViewController(idealTypeInputStep2ViewController, animated: true)
     }
     
+    func getSelectedMBTIString() -> String {
+        var mbtiString = ""
+        
+        if let eOrI = selectedMBTI["EI"], let nOrS = selectedMBTI["NS"], let fOrT = selectedMBTI["FT"], let pOrJ = selectedMBTI["PJ"] {
+            mbtiString = eOrI + nOrS + fOrT + pOrJ
+        }
+        
+        return mbtiString
+    }
+
 }
 
 extension IdealTypeInputStep1ViewController: UICollectionViewDelegateFlowLayout {
@@ -106,9 +116,7 @@ extension IdealTypeInputStep1ViewController: UICollectionViewDelegate {
         } else {
             selectedMBTI[group] = type.rawValue
         }
-        
-        print("Current selected MBTI:", selectedMBTI)
-        
+                
         collectionView.reloadData()
     }
 }
@@ -126,7 +134,7 @@ extension IdealTypeInputStep1ViewController: UICollectionViewDataSource {
         let typeString = mbtiData[indexPath.item]
         guard let type = MBTIType(rawValue: typeString) else { return UICollectionViewCell() }
         
-        let group = type.getGroup() // getGroup을 직접 호출
+        let group = type.getGroup()
         let isSelected = selectedMBTI[group] == type.rawValue
         
         cell.configure(time: typeString)
