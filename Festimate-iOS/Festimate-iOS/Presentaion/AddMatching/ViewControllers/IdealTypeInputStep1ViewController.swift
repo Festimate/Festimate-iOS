@@ -13,13 +13,10 @@ import SnapKit
 final class IdealTypeInputStep1ViewController: UIViewController {
     
     // MARK: - UI Properties
-    
     let idealTypeInputStep1View: IdealTypeInputStep1View = IdealTypeInputStep1View()
     
     // MARK: - Properties
-    
     var mbtiData = MBTIType.mbtiData
-    
     var selectedMBTI: [String: String] = [:]
     
     override func viewDidLoad() {
@@ -31,12 +28,12 @@ final class IdealTypeInputStep1ViewController: UIViewController {
         registerCell()
         setDelegate()
         setActions()
+        updateNextButtonState()
     }
     
     func setHierarchy() {
         self.view.addSubview(idealTypeInputStep1View)
     }
-    
     
     func setLayout() {
         idealTypeInputStep1View.snp.makeConstraints {
@@ -60,10 +57,16 @@ final class IdealTypeInputStep1ViewController: UIViewController {
     func setActions() {
         idealTypeInputStep1View.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         idealTypeInputStep1View.nextButton.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
+        idealTypeInputStep1View.minAgeTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        idealTypeInputStep1View.maxAgeTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        idealTypeInputStep1View.minHeightTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        idealTypeInputStep1View.maxHeightTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
-}
-
-extension IdealTypeInputStep1ViewController {
+    
+    @objc
+    func textFieldDidChange() {
+        updateNextButtonState()
+    }
     
     @objc
     func backButtonDidTap() {
@@ -92,7 +95,7 @@ extension IdealTypeInputStep1ViewController {
             appearanceList: [],
             questionList: [],
             timeList: [],
-            dress: ""       
+            dress: ""
         )
         
         let idealTypeInputStep2ViewController = IdealTypeInputStep2ViewController()
@@ -109,7 +112,18 @@ extension IdealTypeInputStep1ViewController {
         
         return mbtiString
     }
-
+    
+    func updateNextButtonState() {
+        let isValidAgeAndHeight = !(idealTypeInputStep1View.minAgeTextField.text?.isEmpty ?? true) &&
+                                  !(idealTypeInputStep1View.maxAgeTextField.text?.isEmpty ?? true) &&
+                                  !(idealTypeInputStep1View.minHeightTextField.text?.isEmpty ?? true) &&
+                                  !(idealTypeInputStep1View.maxHeightTextField.text?.isEmpty ?? true)
+        let isValidMBTI = selectedMBTI["EI"] != nil && selectedMBTI["NS"] != nil && selectedMBTI["FT"] != nil && selectedMBTI["PJ"] != nil
+        let isValid = isValidAgeAndHeight && isValidMBTI
+        
+        idealTypeInputStep1View.nextButton.isEnabled = isValid
+        idealTypeInputStep1View.nextButton.backgroundColor = isValid ? UIColor.mainCoral: UIColor.gray03
+    }
 }
 
 extension IdealTypeInputStep1ViewController: UICollectionViewDelegateFlowLayout {
@@ -121,7 +135,6 @@ extension IdealTypeInputStep1ViewController: UICollectionViewDelegateFlowLayout 
         
         return CGSize(width: cellWidth, height: cellHeight)
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 14
@@ -140,15 +153,15 @@ extension IdealTypeInputStep1ViewController: UICollectionViewDelegate {
         } else {
             selectedMBTI[group] = type.rawValue
         }
-                
+        
         collectionView.reloadData()
+        updateNextButtonState()
     }
 }
 
 extension IdealTypeInputStep1ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return mbtiData.count
     }
     
@@ -166,6 +179,4 @@ extension IdealTypeInputStep1ViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
 }
-
