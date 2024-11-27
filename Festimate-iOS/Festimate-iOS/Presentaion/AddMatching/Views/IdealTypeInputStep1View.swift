@@ -22,9 +22,9 @@ class IdealTypeInputStep1View: UIView {
 
     private let ageLabel: UILabel = UILabel()
     
-    private let minAgeTextField: UITextField = UITextField()
+    let minAgeTextField: UITextField = UITextField()
     
-    private let maxAgeTextField: UITextField = UITextField()
+    let maxAgeTextField: UITextField = UITextField()
     
     private let ageRangeLine: UIView = UIView()
     
@@ -32,9 +32,9 @@ class IdealTypeInputStep1View: UIView {
     
     private let heightLabel: UILabel = UILabel()
     
-    private let minHeightTextField: UITextField = UITextField()
+    let minHeightTextField: UITextField = UITextField()
     
-    private let maxHeightTextField: UITextField = UITextField()
+    let maxHeightTextField: UITextField = UITextField()
     
     private let heightRangeLine: UIView = UIView()
     

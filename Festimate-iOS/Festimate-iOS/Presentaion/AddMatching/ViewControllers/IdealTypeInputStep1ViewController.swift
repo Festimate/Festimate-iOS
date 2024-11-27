@@ -72,7 +72,31 @@ extension IdealTypeInputStep1ViewController {
     
     @objc
     func nextButtonDidTap() {
+        guard let minAge = Int(idealTypeInputStep1View.minAgeTextField.text ?? ""),
+              let maxAge = Int(idealTypeInputStep1View.maxAgeTextField.text ?? ""),
+              let minHeight = Int(idealTypeInputStep1View.minHeightTextField.text ?? ""),
+              let maxHeight = Int(idealTypeInputStep1View.maxHeightTextField.text ?? ""),
+              !selectedMBTI.isEmpty else {
+            print("필수 값을 모두 입력해주세요!")
+            return
+        }
+        
+        let selectedMBTIString = getSelectedMBTIString()
+
+        let matchingModel = MatchingModel(
+            minHeight: minHeight,
+            maxHeight: maxHeight,
+            minAge: minAge,
+            maxAge: maxAge,
+            mbti: selectedMBTIString,
+            appearanceList: [],
+            questionList: [],
+            timeList: [],
+            dress: ""       
+        )
+        
         let idealTypeInputStep2ViewController = IdealTypeInputStep2ViewController()
+        idealTypeInputStep2ViewController.matchingModel = matchingModel
         self.navigationController?.pushViewController(idealTypeInputStep2ViewController, animated: true)
     }
     

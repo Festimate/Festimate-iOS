@@ -22,6 +22,8 @@ final class IdealTypeInputStep2ViewController: UIViewController {
     
     var selectedFaceTypeCell: Set<Int> = []
     
+    var matchingModel: MatchingModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +33,9 @@ final class IdealTypeInputStep2ViewController: UIViewController {
         registerCell()
         setDelegate()
         setActions()
+        
+        guard let matchingModel = matchingModel else { return }
+        print("Received Matching Model:", matchingModel)
     }
     
     func setHierarchy() {
