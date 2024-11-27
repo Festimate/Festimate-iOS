@@ -18,6 +18,8 @@ final class AvailableTimeViewController: UIViewController {
     
     // MARK: - Properties
     
+    var matchingModel: MatchingModel?
+    
     var timeData = AvailableTime.allHours
     
     var selectedTimeCell: Set<Int> = []
@@ -75,7 +77,13 @@ extension AvailableTimeViewController {
     
     @objc
     func nextButtonDidTap() {
+        if let matchingModel = matchingModel {
+            let selectedTimes = getSelectedTimes()
+            self.matchingModel?.timeList = selectedTimes
+        }
+        
         let dressInfoViewController = DressInfoViewController()
+        dressInfoViewController.matchingModel = matchingModel
         self.navigationController?.pushViewController(dressInfoViewController, animated: true)
     }
     
@@ -85,6 +93,17 @@ extension AvailableTimeViewController {
         availableTimeView.nextButton.isEnabled = isTimeSelected
     }
     
+    func getSelectedTimes() -> [String] {
+        var selectedTimes: [String] = []
+        
+        for index in selectedTimeCell {
+            if index < timeData.count {
+                selectedTimes.append(timeData[index])
+            }
+        }
+        
+        return selectedTimes
+    }
 }
 
 extension AvailableTimeViewController: UICollectionViewDelegateFlowLayout {
@@ -131,7 +150,7 @@ extension AvailableTimeViewController: UICollectionViewDataSource {
         cell.updateSelectionState(true)
         updateNextButtonState()
     }
-            
+    
     // 선택 해제된 셀 제거
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? SelectButtonCollectionViewCell else { return }

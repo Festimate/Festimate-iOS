@@ -93,6 +93,7 @@ private extension AddMatchingViewController {
     func matchingButtonDidTap() {
         if isMatchingEnabled {
             let availableTimeViewController = AvailableTimeViewController()
+            availableTimeViewController.matchingModel = matchingModel
             self.navigationController?.pushViewController(availableTimeViewController, animated: true)
         }
     }

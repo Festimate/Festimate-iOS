@@ -18,6 +18,8 @@ final class DressInfoViewController: UIViewController {
     
     // MARK: - Properties
     
+    var matchingModel: MatchingModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +67,7 @@ extension DressInfoViewController {
     @objc
     func completeButtonDidTap() {
         let bankAccountInfoViewController = BankAccountInfoViewController()
+        matchingModel?.dress = dressInfoView.dressInfoTextView.text
         self.navigationController?.pushViewController(bankAccountInfoViewController, animated: true)
     }
     
