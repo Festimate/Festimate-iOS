@@ -32,6 +32,8 @@ final class MainViewController: UIViewController {
         setHierarchy()
         setLayout()
         setActions()
+        
+        print()
     }
     
     func setHierarchy() {
