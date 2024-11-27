@@ -16,8 +16,6 @@ final class MainViewController: UIViewController {
     
     private let mainView: MainView = MainView()
     
-    // MARK: - Properties
-    
     private var matchingData: [MainModel] = MainModel.dummy() {
         didSet {
             self.mainView.cardView.matchingCardCollectionView.reloadData()
@@ -32,8 +30,7 @@ final class MainViewController: UIViewController {
         setHierarchy()
         setLayout()
         setActions()
-        
-        print()
+        getUserDetail()
     }
     
     func setHierarchy() {
@@ -74,6 +71,30 @@ extension MainViewController {
         let addMatchingViewController = AddMatchingViewController()
         self.navigationController?.pushViewController(addMatchingViewController, animated: true)
     }
+
+    func getUserDetail() {
+        NetworkService.shared.userService.getUserDetail { [weak self] result in
+                guard let self = self else { return }
+
+                switch result {
+                case .success(let data):
+                    mainView.nicknameLabel.text = data.nickname
+                    mainView.schoolLabel.text = data.school
+
+                case .requestErr:
+                    print("요청 오류입니다")
+                case .decodedErr:
+                    print("디코딩 오류입니다")
+                case .pathErr:
+                    print("경로 오류입니다")
+                case .serverErr:
+                    print("서버 오류입니다")
+                case .networkFail:
+                    print("네트워크 오류입니다")
+                }
+            }
+        }
+
 }
 
 
