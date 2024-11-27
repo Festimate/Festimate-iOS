@@ -1,5 +1,5 @@
 //
-//  UserTargetType.swift
+//  MatchingTargetType.swift
 //  Festimate-iOS
 //
 //  Created by 김민서 on 11/28/24.
@@ -9,30 +9,30 @@ import Foundation
 
 import Moya
 
-enum UserTargetType {
-    case getUserDetail
+enum MatchingTargetType {
+    case postMatching(matching: PostMatchingRequest)
 }
 
-extension UserTargetType: BaseTargetType {
+extension MatchingTargetType: BaseTargetType {
     var utilPath: String {
-        return "festimate/v1/user-detail"
+        return "festimate/v1/matching"
     }
     
     var path: String {
         switch self {
-        case .getUserDetail:
+        case .postMatching:
             return utilPath
         }
     }
     
     var method: Moya.Method {
-        return .get
+        return .post
     }
     
     var task: Moya.Task {
         switch self {
-        case .getUserDetail:
-            return .requestPlain
+        case .postMatching(let matching):
+            return .requestJSONEncodable(matching)
         }
     }
     
@@ -43,4 +43,5 @@ extension UserTargetType: BaseTargetType {
         ]
     }
 }
+
 

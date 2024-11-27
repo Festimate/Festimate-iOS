@@ -14,5 +14,7 @@ final class NetworkService {
     private init() {}
    
     let userService: UserService = UserService()
+    
+    let matchingService: MatchingService = MatchingService()
 
 }
