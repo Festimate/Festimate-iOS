@@ -16,13 +16,13 @@ class MainView: UIView {
 
     private let welcomeLabel: UILabel = UILabel()
     
-    private let nicknameLabel: UILabel = UILabel()
+    let nicknameLabel: UILabel = UILabel()
     
     private let dearLabel: UILabel = UILabel()
     
     private let schoolIcon: UIImageView = UIImageView(image: .schoolIcon)
     
-    private let schoolLabel: UILabel = UILabel()
+    let schoolLabel: UILabel = UILabel()
     
     let cardView: CardView = CardView()
     

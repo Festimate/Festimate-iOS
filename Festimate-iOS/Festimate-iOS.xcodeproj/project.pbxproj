@@ -157,6 +157,8 @@
 /* Begin XCBuildConfiguration section */
 		0DDDED282CACF42A0033FAEA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 0DDDED162CACF4290033FAEA /* Festimate-iOS */;
+			baseConfigurationReferenceRelativePath = Global/Settings/Config.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -183,6 +185,8 @@
 		};
 		0DDDED292CACF42A0033FAEA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 0DDDED162CACF4290033FAEA /* Festimate-iOS */;
+			baseConfigurationReferenceRelativePath = Global/Settings/Config.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

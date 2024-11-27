@@ -16,7 +16,7 @@ class LoginView: UIView {
     
     private let titleImage = UIImageView(image: .mainLogo)
     
-    private let kakaoLoginImage = UIImageView(image: .kakaoLogo)
+    private let kakaoLoginImage = UIImageView(image: .kakao)
     
     lazy var kakaoLoginButton = UIButton()
     
