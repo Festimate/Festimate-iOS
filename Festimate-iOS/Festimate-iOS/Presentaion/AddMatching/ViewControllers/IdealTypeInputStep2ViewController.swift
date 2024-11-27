@@ -22,6 +22,8 @@ final class IdealTypeInputStep2ViewController: UIViewController {
     
     var selectedFaceTypeCell: Set<Int> = []
     
+    var tempSelectedFaceTypes: [String] = []
+    
     var matchingModel: MatchingModel?
     
     override func viewDidLoad() {
@@ -66,6 +68,7 @@ final class IdealTypeInputStep2ViewController: UIViewController {
     
     func setActions() {
         idealTypeInputStep2View.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+        idealTypeInputStep2View.completeButton.addTarget(self, action: #selector(completeButtonDidTap), for: .touchUpInside)
     }
 }
 
@@ -74,6 +77,17 @@ extension IdealTypeInputStep2ViewController {
     @objc
     func backButtonDidTap() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func completeButtonDidTap() {
+        matchingModel?.appearanceList = tempSelectedFaceTypes
+        print("Updated Matching Model:", matchingModel ?? "No model")
+        
+        
+        let addMatchingViewController = AddMatchingViewController()
+        addMatchingViewController.matchingModel = matchingModel
+        self.navigationController?.pushViewController(addMatchingViewController, animated: true)
     }
     
     func updateCompleteButtonState() {
@@ -104,7 +118,6 @@ extension IdealTypeInputStep2ViewController: UICollectionViewDelegateFlowLayout 
 extension IdealTypeInputStep2ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return faceTypeData.count
     }
     
@@ -128,6 +141,11 @@ extension IdealTypeInputStep2ViewController: UICollectionViewDataSource {
         guard let cell = collectionView.cellForItem(at: indexPath) as? SelectButtonCollectionViewCell else { return }
         selectedFaceTypeCell.insert(indexPath.item)
         cell.updateSelectionState(true)
+        
+        if let faceType = faceTypeData[safe: indexPath.item] {
+            tempSelectedFaceTypes.append(faceType)
+        }
+        
         updateCompleteButtonState()
     }
     
@@ -139,4 +157,8 @@ extension IdealTypeInputStep2ViewController: UICollectionViewDataSource {
     }
 }
 
-
+extension Array {
+    subscript(safe index: Int) -> Element? {
+        return index >= 0 && index < count ? self[index] : nil
+    }
+}

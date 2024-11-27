@@ -16,7 +16,9 @@ final class IdealTypeInputStep1ViewController: UIViewController {
     let idealTypeInputStep1View: IdealTypeInputStep1View = IdealTypeInputStep1View()
     
     // MARK: - Properties
+    
     var mbtiData = MBTIType.mbtiData
+    
     var selectedMBTI: [String: String] = [:]
     
     override func viewDidLoad() {
