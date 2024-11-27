@@ -143,6 +143,7 @@ class AddMatchingView: UIView {
         infoLabel.do {
             $0.setLabel(text: "2개의 항목을 모두 입력해주세요", textColor: .gray04, font: .pretendard(.body_med_13))
         }
+        
         infoStackView.do {
             $0.axis = .horizontal
             $0.alignment = .top

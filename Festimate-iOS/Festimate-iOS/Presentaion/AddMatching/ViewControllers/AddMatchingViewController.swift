@@ -17,15 +17,30 @@ final class AddMatchingViewController: UIViewController {
     let addMatchingView: AddMatchingView = AddMatchingView()
     
     // MARK: - Properties
+        
+    var matchingModel: MatchingModel? {
+        didSet {
+            updateIdealTypeInputState()
+        }
+    }
     
-    private var matchingInputData: AddMatchingModel = AddMatchingModel.sampleData() {
+    private var addMatchingModel: AddMatchingModel {
+        return AddMatchingModel(
+            isIdealTypeInput: isIdealTypeInput,
+            isPreferenceInput: isPreferenceInput
+        )
+    }
+    
+    private var isIdealTypeInput: Bool = false {
         didSet {
             updateButtonState()
         }
     }
     
+    private var isPreferenceInput: Bool = true
+    
     private var isMatchingEnabled: Bool {
-        return matchingInputData.isIdealTypeInput && matchingInputData.isPreferenceInput
+        return isIdealTypeInput && isPreferenceInput
     }
     
     override func viewDidLoad() {
@@ -55,6 +70,8 @@ final class AddMatchingViewController: UIViewController {
     
     func setActions() {
         addMatchingView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+        addMatchingView.idealTypeButton.isUserInteractionEnabled = true
+        addMatchingView.idealTypeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.idealTypeButtonDidTap)))
         addMatchingView.matchingButton.addTarget(self, action: #selector(matchingButtonDidTap), for: .touchUpInside)
     }
 }
@@ -67,15 +84,40 @@ private extension AddMatchingViewController {
     }
     
     @objc
+    func idealTypeButtonDidTap() {
+        let idealTypeInputStep1ViewController = IdealTypeInputStep1ViewController()
+        self.navigationController?.pushViewController(idealTypeInputStep1ViewController, animated: true)
+    }
+    
+    @objc
     func matchingButtonDidTap() {
         if isMatchingEnabled {
             let availableTimeViewController = AvailableTimeViewController()
+            availableTimeViewController.matchingModel = matchingModel
             self.navigationController?.pushViewController(availableTimeViewController, animated: true)
         }
     }
     
+    func updateIdealTypeInputState() {
+        if let model = matchingModel {
+            isIdealTypeInput = isMatchingModelFilled(model)
+        } else {
+            isIdealTypeInput = false
+        }
+    }
+    
+    func isMatchingModelFilled(_ model: MatchingModel) -> Bool {
+        return model.minHeight > 0 &&
+        model.maxHeight > 0 &&
+        model.minAge > 0 &&
+        model.maxAge > 0 &&
+        !model.mbti.isEmpty &&
+        !model.appearanceList.isEmpty
+    }
+    
+    
     func updateButtonState() {
-        setButtonState(isIdealTypeInput: matchingInputData.isIdealTypeInput, isPreferenceInput: matchingInputData.isPreferenceInput)
+        setButtonState(isIdealTypeInput: isIdealTypeInput, isPreferenceInput: isPreferenceInput)
         setMatchingButtonEnabled(isMatchingEnabled)
     }
     

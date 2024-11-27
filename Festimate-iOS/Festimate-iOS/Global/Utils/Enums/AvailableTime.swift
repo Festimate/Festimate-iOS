@@ -1,13 +1,13 @@
 //
-//  AvailableTimeModel.swift
+//  AvailableTime.swift
 //  Festimate-iOS
 //
-//  Created by 김민서 on 10/19/24.
+//  Created by 김민서 on 11/14/24.
 //
 
 import UIKit
 
-enum AvailableTimeModel: String, CaseIterable {
+enum AvailableTime: String, CaseIterable {
     case tenAM = "10 : 00"
     case elevenAM = "11 : 00"
     case twelvePM = "12 : 00"
@@ -22,7 +22,7 @@ enum AvailableTimeModel: String, CaseIterable {
     case ninePM = "21 : 00"
     
     static var allHours: [String] {
-        return AvailableTimeModel.allCases.map { $0.rawValue }
+        return AvailableTime.allCases.map { $0.rawValue }
     }
 }
 
