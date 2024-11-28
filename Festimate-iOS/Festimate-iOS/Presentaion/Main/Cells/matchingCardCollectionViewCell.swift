@@ -193,7 +193,7 @@ final class matchingCardCollectionViewCell: UICollectionViewCell {
         }
         
         locationInfoLabel.do {
-            $0.setLabel(text: "스머프 동산", textColor: .mainCoral, font: .pretendard(.body_semi_15))
+            $0.setLabel(textColor: .mainCoral, font: .pretendard(.body_semi_15))
         }
         
         timeLabel.do {
@@ -201,11 +201,11 @@ final class matchingCardCollectionViewCell: UICollectionViewCell {
         }
         
         timeInfoLabel.do {
-            $0.setLabel(text: "20:00 PM", textColor: .mainCoral, font: .pretendard(.body_semi_15))
+            $0.setLabel(textColor: .mainCoral, font: .pretendard(.body_semi_15))
         }
         
         nickNameLabel.do {
-            $0.setLabel(text: "쿠키", textColor: .mainCoral, font: .pretendard(.title_extra_24))
+            $0.setLabel(textColor: .mainCoral, font: .pretendard(.title_extra_24))
         }
         
         matchingStateButton.do {
@@ -239,7 +239,7 @@ final class matchingCardCollectionViewCell: UICollectionViewCell {
         }
         
         dressInfoTagLabel.do {
-            $0.setLabel(text: "폴로 셔츠에 가디건을 입고 있어요!", textColor: .gray06, font: .pretendard(.body_med_13))
+            $0.setLabel(textColor: .gray06, font: .pretendard(.body_med_13))
         }
         blurCardView.isHidden = true
     }

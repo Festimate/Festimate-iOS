@@ -143,7 +143,7 @@ class DressInfoView: UIView {
         }
         
         textCountLabel.do {
-            $0.setLabel(text: "0/50", textColor: .gray04, font: .pretendard(.body_med_13))
+            $0.setLabel(textColor: .gray04, font: .pretendard(.body_med_13))
         }
         
         completeButton.do {
