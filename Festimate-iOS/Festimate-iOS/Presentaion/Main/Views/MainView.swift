@@ -127,7 +127,7 @@ class MainView: UIView {
         }
         
         nicknameLabel.do {
-            $0.setLabel(text: "아기고양이", textColor: .mainCoral, font: .pretendard(.title_extra_24))
+            $0.setLabel(textColor: .mainCoral, font: .pretendard(.title_extra_24))
         }
         
         dearLabel.do {
@@ -135,7 +135,7 @@ class MainView: UIView {
         }
         
         schoolLabel.do {
-            $0.setLabel(text: "가톨릭대학교", textColor: .gray04, font: .pretendard(.body_semi_15))
+            $0.setLabel(textColor: .gray04, font: .pretendard(.body_semi_15))
         }
         
         infoLabel.do {

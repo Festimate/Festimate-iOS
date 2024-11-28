@@ -53,6 +53,8 @@ final class DressInfoViewController: UIViewController {
     func setActions() {
         dressInfoView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         dressInfoView.completeButton.addTarget(self, action: #selector(completeButtonDidTap), for: .touchUpInside)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
 }
@@ -62,6 +64,11 @@ extension DressInfoViewController {
     @objc
     func backButtonDidTap() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func dismissKeyboard() {
+        self.view.endEditing(true)
     }
     
     @objc
