@@ -54,6 +54,10 @@ final class IdealTypeInputStep1ViewController: UIViewController {
     func setDelegate() {
         idealTypeInputStep1View.mbtiCollectionView.delegate = self
         idealTypeInputStep1View.mbtiCollectionView.dataSource = self
+        idealTypeInputStep1View.minAgeTextField.delegate = self
+        idealTypeInputStep1View.maxAgeTextField.delegate = self
+        idealTypeInputStep1View.minHeightTextField.delegate = self
+        idealTypeInputStep1View.maxHeightTextField.delegate = self
     }
     
     func setActions() {
@@ -63,12 +67,21 @@ final class IdealTypeInputStep1ViewController: UIViewController {
         idealTypeInputStep1View.maxAgeTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         idealTypeInputStep1View.minHeightTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         idealTypeInputStep1View.maxHeightTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     @objc
     func textFieldDidChange() {
         updateNextButtonState()
     }
+    
+    @objc
+    func dismissKeyboard() {
+        self.view.endEditing(true) // 현재 활성화된 텍스트필드 비활성화
+    }
+
     
     @objc
     func backButtonDidTap() {
@@ -181,4 +194,13 @@ extension IdealTypeInputStep1ViewController: UICollectionViewDataSource {
         
         return cell
     }
+}
+
+extension IdealTypeInputStep1ViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // 키보드 내리기
+        return true
+    }
+    
 }
