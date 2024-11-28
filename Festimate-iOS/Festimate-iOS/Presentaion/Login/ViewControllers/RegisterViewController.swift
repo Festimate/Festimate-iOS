@@ -340,9 +340,10 @@ extension RegisterViewController {
         switch effect {
             
         case .complete:
-            break
+            let mainViewController = MainViewController()
+            self.navigationController?.setViewControllers([mainViewController], animated: true)
         case .pop:
-            break
+            self.navigationController?.popViewController(animated: true)
         case .nextStep(step: let step):
             pageViewController.setViewControllers([userInfoViewControllers[step.rawValue]], direction: .forward, animated: true, completion: nil)
         case .previousStep(step: let step):

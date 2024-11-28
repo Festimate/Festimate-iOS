@@ -23,7 +23,14 @@ class RegisterViewModel {
         "P":"J", "J":"P"
     ]
     
+    private var signupService: SignupService?
+    private var tokenManager: TokenManager?
+    
     init() {
+        signupService = NetworkService.shared.signupService
+        
+        tokenManager = TokenManager.shared
+        
         $registerState
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
@@ -53,7 +60,46 @@ class RegisterViewModel {
     }
     
     func performRegister() {
+        signupService?.postSignup(body: PostSignupRequest(username: registerState.name, nickname: registerState.nickname, age: Int(registerState.age) ?? 20, gender: genderString(from: registerState.gender), school: registerState.school, height: Int(registerState.height) ?? 170, mbti: mbtiString(from: registerState.selectedMBTIs) ?? "ENFP", appearanceList: registerState.selectedFaces)){ [weak self] response in
+            guard let self = self else { return }
+            
+            switch response.self {
+                
+            case .success(let response):
+                self.tokenManager?.create(value: String(response.userId))
+                sendCompleteSideEffect()
+            case .requestErr:
+                print("요청 오류입니다")
+            case .decodedErr:
+                print("디코딩 오류입니다")
+            case .pathErr:
+                print("경로 오류입니다")
+            case .serverErr:
+                print("서버 오류입니다")
+            case .networkFail:
+                print("네트워크 오류입니다")
+            }
+        }
+    }
+    
+    func mbtiString(from set: Set<String>) -> String? {
+        let mbtiOrder = ["I", "E", "N", "S", "T", "F", "J", "P"]
         
+        let sortedMBTI = mbtiOrder.filter { set.contains($0) }
+        
+        return sortedMBTI.count == 4 ? sortedMBTI.joined() : nil
+    }
+    
+    func genderString(from gender: Gender) -> String {
+        switch gender {
+            
+        case .woman:
+            return "여자"
+        case .man:
+            return "남자"
+        case .unSelected:
+            return "오류"
+        }
     }
     
     func sendPopSideEffect() {

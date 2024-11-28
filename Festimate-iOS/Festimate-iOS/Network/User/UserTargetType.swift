@@ -39,7 +39,7 @@ extension UserTargetType: BaseTargetType {
     var headers: [String: String]? {
         return [
             "Content-Type": "application/json",
-            "userId": "1"
+            "userId": TokenManager.shared.read() ?? "1"
         ]
     }
 }

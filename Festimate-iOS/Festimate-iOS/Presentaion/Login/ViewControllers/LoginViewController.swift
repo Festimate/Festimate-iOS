@@ -13,6 +13,7 @@ import SnapKit
 final class LoginViewController: UIViewController {
     
     private let loginView = LoginView()
+    private let tokenManager = TokenManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,10 @@ final class LoginViewController: UIViewController {
         setLayout()
         setStyle()
         addActions()
+        
+        if tokenManager.read() != nil {
+            navigateToMain()
+        }
     }
     
     func setHierarchy() {
@@ -37,6 +42,7 @@ final class LoginViewController: UIViewController {
     }
     
     func addActions() {
+        loginView.kakaoLoginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         loginView.appleLoginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
     
@@ -48,6 +54,16 @@ final class LoginViewController: UIViewController {
     private func navigateToNext() {
         let nextViewController = RegisterViewController()
         self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
+    private func navigateToMain() {
+        let mainViewController = MainViewController()
+        let navigationController = UINavigationController(rootViewController: mainViewController)
+        
+        UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?.windows
+            .first?.rootViewController = navigationController
     }
 }
 
