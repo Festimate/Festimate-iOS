@@ -17,4 +17,5 @@ final class NetworkService {
     
     let matchingService: MatchingService = MatchingService()
 
+    let signupService: SignupService = SignupService()
 }
