@@ -11,16 +11,24 @@ import Moya
 
 enum SignupTargetType {
     case postSignup(body: PostSignupRequest)
+    case checkNickname(nickname: String)
 }
                     
 extension SignupTargetType: BaseTargetType {
     var utilPath: String {
-        return "festimate/v1/signup"
+        switch self {
+        case .postSignup:
+            return "festimate/v1/signup"
+        case .checkNickname:
+            return "festimate/v1/check-nickname"
+        }
     }
     
     var path: String {
         switch self {
         case .postSignup:
+            return utilPath
+        case .checkNickname:
             return utilPath
         }
     }
@@ -33,6 +41,8 @@ extension SignupTargetType: BaseTargetType {
         switch self {
         case .postSignup(let body):
             return .requestJSONEncodable(body)
+        case .checkNickname(let nickname):
+            return .requestParameters(parameters: ["nickname": nickname], encoding: URLEncoding.queryString)
         }
     }
     

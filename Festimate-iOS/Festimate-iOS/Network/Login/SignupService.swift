@@ -32,4 +32,27 @@ final class SignupService: BaseService, SignupServiceProtocol {
         }
     }
     
+    func postCheckNickname(body: PostCheckNicknameRequest, completion: @escaping (NetworkResult<Bool>) -> Void) {
+        provider.request(.checkNickname(nickname: body.nickname)) { result in
+            switch result {
+            case .success(let result):
+                let statusCode = result.statusCode
+                let data = result.data
+                let networkResult: NetworkResult<Bool>
+                switch statusCode {
+                case 200..<205:
+                    networkResult = .success(true)
+                case 400..<409:
+                    networkResult = .requestErr
+                case 500:
+                    networkResult = .serverErr
+                default:
+                    networkResult = .networkFail
+                }
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
