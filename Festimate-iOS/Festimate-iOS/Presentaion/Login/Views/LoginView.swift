@@ -63,6 +63,8 @@ class LoginView: UIView {
         kakaoLoginImage.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
             $0.centerY.equalToSuperview()
+            $0.width.equalTo(18)
+            $0.height.equalTo(17)
         }
         
         appleLoginButton.snp.makeConstraints {
